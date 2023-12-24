@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  application:
+    container_name: cont_application
+    build: ./application
+    image: app:v1
+    ports:
+      - '3000:3000'
+    environment:
+      SERVER_PORT: '3000'
+      SERVER_THEME: 'bg-app1'
+    networks:
+      - internalnet
+
+networks:
+  internalnet:
+    driver: bridge

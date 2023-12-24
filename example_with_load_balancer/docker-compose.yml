@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  load_balancer:
+    container_name: cont_load_balancer
+    image: nginx:latest
+    volumes:
+      - ./nginx/load-balancer.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - application_1
+      - application_2
+      - application_3
+    ports:
+      - '8080:80'
+    networks:
+      - internalnet
+
+  application_1:
+    container_name: cont_application_1
+    build: ./application
+    image: app:v1
+    ports:
+      - '3001:3000'
+    environment:
+      SERVER_PORT: '3001'
+      SERVER_THEME: 'bg-app1'
+    networks:
+      - internalnet
+
+  application_2:
+    container_name: cont_application_2
+    build: ./application
+    image: app:v1
+    ports:
+      - '3002:3000'
+    environment:
+      SERVER_PORT: '3002'
+      SERVER_THEME: 'bg-app2'
+    networks:
+      - internalnet
+
+  application_3:
+    container_name: cont_application_3
+    build: ./application
+    image: app:v1
+    ports:
+      - '3003:3000'
+    environment:
+      SERVER_PORT: '3003'
+      SERVER_THEME: 'bg-app3'
+    networks:
+      - internalnet
+
+networks:
+  internalnet:
+    driver: bridge
