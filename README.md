@@ -39,7 +39,16 @@ Load balancing enhances system scalability, availability, and reliability by mit
 
 While load balancing offers numerous advantages, potential drawbacks include increased complexity in setup and maintenance as well as potential challenges in handling stateful applications like state sharing, session persistence, caching, etc...
 
+Load balancers can benefit a wide range of applications, particularly those that experience varying levels of traffic and demand. Some types of applications that can benefit from load balancers include: web applications, highly available services, API gateways, media streaming services, and IoT platforms.
+
 ### **Image of the system architecture**
+Example with load balancer includes:
+- Docker setup
+  - 3 Applications (NodeJS/ExpressJS/EJS)
+  - 1 Load Balancer (Nginx)
+
+Example without load balancer includes:
+- 1 Application (NodeJS/ExpressJS/EJS)
 
 ![system](https://github.com/mateoniksic/project-docker-experimental-work/assets/57192709/a3f3e30b-97b9-4b01-af0b-f46933535466)
 
