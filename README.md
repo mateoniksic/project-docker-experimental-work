@@ -100,11 +100,69 @@ Some of the key metrics and statistics that ab tool calculates and reports inclu
 - Transfer rate: The amount of data transferred per unit of time.
 - Percentage of requests served within a certain time: Indicates the distribution of response times, helping you understand how many requests were served within specific time intervals.
 
-#### Results: Single server - "example" - 10,000 requests - 6 concurrent requests
+### **Benchmark results**
+#### Benchmark - Single server - "example" - 10,000 requests - 6 concurrent requests
 ![ab-test-n-1000-c-6-single-server](https://github.com/mateoniksic/project-docker-experimental-work/assets/57192709/0f1d65f9-e2ee-48f0-a48b-9e7d41b4367a)
 
-#### Results: Load balancer with three servers - "example_with_load_balancer" - 10,000 requests - 6 concurrent requests
+#### Benchmark - Load balancer with three servers - "example_with_load_balancer" - 10,000 requests - 6 concurrent requests
 ![ab-test-n-1000-c-6-load-balancer](https://github.com/mateoniksic/project-docker-experimental-work/assets/57192709/45322bd1-bc07-41e5-8465-59cc0c4051af)
 
+### **Plots**
+##### Comparison of response times
+![image](https://github.com/mateoniksic/project-docker-experimental-work/assets/57192709/d5ea851d-9872-4a00-8ad8-b4e0972834b5)
 
+\* lower is better
 
+##### Comparison of requests per second
+![image](https://github.com/mateoniksic/project-docker-experimental-work/assets/57192709/f1337def-9894-45e4-8819-25658900542b)
+
+\* higher is better
+
+##### Comparison of failure rates
+![image](https://github.com/mateoniksic/project-docker-experimental-work/assets/57192709/fd022687-76b7-4c07-a9e0-4d277809a2e1)
+
+\* lower is better
+
+##### Comparison of median connection time
+![image](https://github.com/mateoniksic/project-docker-experimental-work/assets/57192709/3527ae78-efa8-418a-89cc-41632228cd4c)
+
+\* lower is better
+
+##### Comparison of max connection time
+![image](https://github.com/mateoniksic/project-docker-experimental-work/assets/57192709/03eed0dc-918c-4c7d-b7fb-8ff58595dccb)
+
+\* lower is better
+
+##### Comparison of mean time per request
+![image](https://github.com/mateoniksic/project-docker-experimental-work/assets/57192709/874f58cd-1afb-49de-8d34-9ae924e350f5)
+
+\* lower is better
+
+### **Conclusion**
+The benchmark results indicate that the single server and the load balancer with three servers exhibit different performance characteristics under the tested conditions. For the single server configuration, the requests per second (RPS) value is approximately 43.20, with a mean time per request of 138.889 milliseconds. However, a substantial number of requests (93.95%) failed, leading to a less efficient performance.
+
+**Single server:**
+- 50% of requests were served within 90 ms.
+- 66% within 111 ms.
+- 75% within 116 ms.
+- 80% within 132 ms.
+- 90% within 530 ms.
+- 95% within 591 ms.
+- 98% within 619 ms.
+- 99% within 634 ms.
+- 100% within 735 ms (longest request).
+
+**Load balancer with three servers:**
+- 50% of requests were served within 24 ms.
+- 66% within 26 ms.
+- 75% within 37 ms.
+- 80% within 45 ms.
+- 90% within 522 ms.
+- 95% within 530 ms.
+- 98% within 545 ms.
+- 99% within 559 ms.
+- 100% within 645 ms (longest request).
+
+Comparing the two configurations, the load balancer with three servers consistently demonstrates faster response times across all percentiles. The load balancer's ability to distribute requests efficiently among multiple servers contributes to reduced response times compared to a single server.
+
+On the other hand, the load balancer with three servers demonstrates a higher RPS of 72.83, with a lower mean time per request of 82.378 milliseconds. The failure rate is also lower at 19.33%. The longest request for a load balancer configuration is 645ms compared to a single server which is 735ms. These results suggest that the load balancer configuration outperforms the single server setup, distributing the load more effectively and handling a greater number of requests.
